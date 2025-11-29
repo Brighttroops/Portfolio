@@ -1,0 +1,119 @@
+{
+    "profile": {
+        "name": "Bright Fungula",
+        "title": "Product Designer",
+        "bio": "Design Engineer specializing in Product, Interaction, and Visual Design. Passionate about creating intuitive experiences and robust design systems",
+        "email": "brighttroopsfungula@gmail.com",
+        "phone": "+265880899230",
+        "location": "Blantyre, Malawi",
+        "avatar": "/images/Avator.jpg"
+    },
+    "socials": {
+        "github": "https://github.com/Brighttroops",
+        "twitter": "https://x.com/TroopsBright",
+        "linkedin": "https://www.linkedin.com/in/bright-fungula-b64509300/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BX0t4qq%2FpR4izx31vG9aOLg%3D%3D"
+    },
+    "skills": {
+        "design": [
+            "Web Design",
+            "UI/UX",
+            "Branding"
+        ],
+        "frontend": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "HTML5"
+        ],
+        "backend": [
+            "Node.js",
+            "PostgreSQL"
+        ],
+        "ai": [
+            "OpenAI API",
+            "Prompt Engineering"
+        ]
+    },
+    "services": [
+        {
+            "title": "UI/UX Design",
+            "description": "User-centric design solutions that enhance engagement and usability.",
+            "icon": "🎨"
+        },
+        {
+            "title": "Full Stack Development",
+            "description": "End-to-end web application development using modern technologies.",
+            "icon": "💻"
+        },
+        {
+            "title": "AI Integration",
+            "description": "Integrating AI capabilities into existing or new applications.",
+            "icon": "🤖"
+        },
+        {
+            "title": "Custom Software",
+            "description": "Tailored software solutions to meet specific business needs.",
+            "icon": "⚙️"
+        }
+    ],
+    "projects": [
+        {
+            "title": "Foodies Gallery",
+            "description": "A unique fancy restaurant app.",
+            "tech": [
+                "Figma",
+                "React",
+                "TypeScript",
+                "Tailwind"
+            ],
+            "link": "https://example.com",
+            "image": "/images/Image_1.png"
+        },
+        {
+            "title": "Find your Home",
+            "description": "A next-gen app for finding your dream home anywhere.",
+            "tech": [
+                "Figma",
+                "React",
+                "TypeScript",
+                "Tailwind"
+            ],
+            "link": "https://example.com",
+            "image": "/images/Image_2.png"
+        },
+        {
+            "title": "Contact Card",
+            "description": "A unique design work of a contact card that meets the needs of a user.",
+            "tech": [
+                "Figma",
+                "React",
+                "TypeScript"
+            ],
+            "link": "https://example.com",
+            "image": "/images/Image_3.png"
+        },
+        {
+            "title": "Give hope",
+            "description": "Give hope to the young ones by making donations through this app.",
+            "tech": [
+                "Figma",
+                "React",
+                "TypeScript"
+            ],
+            "link": "https://example.com",
+            "image": "/images/Image_4.jpg"
+        },
+        {
+            "title": "Classy Funiture",
+            "description": "Find your next fancy furniture with this app.",
+            "tech": [
+                "Figma",
+                "React",
+                "TypeScript"
+            ],
+            "link": "https://example.com",
+            "image": "/images/Contact_Card.png"
+        }
+    ]
+}
