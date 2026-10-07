@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
 import content from '../data/content.json';
 
 export default function Contact() {
@@ -48,19 +50,19 @@ export default function Contact() {
                             <div className="space-y-6">
                                 <a href={`mailto:${profile.email}`} className="flex items-center gap-4 text-text-muted hover:text-primary transition-colors group">
                                     <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
-                                        <span className="text-xl">✉️</span>
+                                        <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" className="text-primary" />
                                     </div>
                                     <span className="text-lg">{profile.email}</span>
                                 </a>
                                 <a href={`tel:${profile.phone}`} className="flex items-center gap-4 text-text-muted hover:text-primary transition-colors group">
                                     <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
-                                        <span className="text-xl">📱</span>
+                                        <FontAwesomeIcon icon={faPhone} aria-hidden="true" className="text-primary" />
                                     </div>
                                     <span className="text-lg">{profile.phone}</span>
                                 </a>
                                 <div className="flex items-center gap-4 text-text-muted group">
                                     <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center shadow-sm">
-                                        <span className="text-xl">📍</span>
+                                        <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" className="text-primary" />
                                     </div>
                                     <span className="text-lg">{profile.location}</span>
                                 </div>

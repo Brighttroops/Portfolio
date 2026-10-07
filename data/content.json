@@ -38,23 +38,19 @@
     "services": [
         {
             "title": "UI/UX Design",
-            "description": "User-centric design solutions that enhance engagement and usability.",
-            "icon": "🎨"
+            "description": "User-centric design solutions that enhance engagement and usability."
         },
         {
             "title": "Full Stack Development",
-            "description": "End-to-end web application development using modern technologies.",
-            "icon": "💻"
+            "description": "End-to-end web application development using modern technologies."
         },
         {
             "title": "AI Integration",
-            "description": "Integrating AI capabilities into existing or new applications.",
-            "icon": "🤖"
+            "description": "Integrating AI capabilities into existing or new applications."
         },
         {
             "title": "Custom Software",
-            "description": "Tailored software solutions to meet specific business needs.",
-            "icon": "⚙️"
+            "description": "Tailored software solutions to meet specific business needs."
         }
     ],
     "projects": [

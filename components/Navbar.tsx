@@ -1,62 +1,27 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/utils/cn';
+import { useState } from 'react';
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const links = [ ['About', '/#about'], ['Work', '/work'], ['Contact', '/#contact'] ];
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    return (
-        <nav className={cn(
-            "fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300",
-            scrolled ? "pt-4" : "pt-6"
-        )}>
-            <div className={cn(
-                "relative flex items-center justify-between px-6 py-3 rounded-full border transition-all duration-300 backdrop-blur-md",
-                scrolled ? "bg-secondary/80 border-white/10 shadow-lg w-[90%] md:w-[60%]" : "bg-transparent border-transparent w-full container"
-            )}>
-                <Link href="/" className="text-xl font-bold tracking-tighter text-foreground font-display">
-                    Welcome
-                </Link>
-
-                <div className="flex flex-col gap-1.5 cursor-pointer md:hidden" onClick={() => setIsOpen(!isOpen)}>
-                    <span className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-[5px]' : ''}`}></span>
-                    <span className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-                    <span className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-[5px]' : ''}`}></span>
-                </div>
-
-                <ul className="hidden md:flex gap-8">
-                    <li><Link href="/#about" className="text-sm font-medium text-text-muted hover:text-foreground transition-colors">About</Link></li>
-                    <li><Link href="/work" className="text-sm font-medium text-text-muted hover:text-foreground transition-colors">Work</Link></li>
-                    <li><Link href="/#contact" className="text-sm font-medium text-text-muted hover:text-foreground transition-colors">Contact</Link></li>
-                </ul>
-
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.ul
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="absolute top-full left-0 right-0 mt-4 bg-secondary/95 backdrop-blur-xl rounded-2xl p-6 flex flex-col gap-4 border border-white/10 md:hidden shadow-2xl z-50"
-                        >
-                            <li><Link href="/#about" className="text-lg font-medium text-foreground block p-2" onClick={() => setIsOpen(false)}>About</Link></li>
-                            <li><Link href="/work" className="text-lg font-medium text-foreground block p-2" onClick={() => setIsOpen(false)}>Work</Link></li>
-                            <li><Link href="/#contact" className="text-lg font-medium text-foreground block p-2" onClick={() => setIsOpen(false)}>Contact</Link></li>
-                        </motion.ul>
-                    )}
-                </AnimatePresence>
-            </div>
-        </nav>
-    );
+  return (
+    <nav aria-label="Main navigation" className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/70 bg-background/85 px-5 py-3 shadow-sm shadow-black/5 backdrop-blur-xl md:px-7">
+        <Link href="/" className="text-lg font-bold tracking-[-.06em]" onClick={() => setIsOpen(false)}>bright<span className="text-primary">.</span></Link>
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map(([label, href]) => <Link key={label} href={href} className="text-sm font-medium text-text-muted transition-colors hover:text-foreground">{label}</Link>)}
+          <Link href="/#contact" className="btn btn-primary !px-5 !py-2.5 text-sm">Let’s talk <span aria-hidden="true">↗</span></Link>
+        </div>
+        <button type="button" className="rounded-full border border-border px-4 py-2 text-sm font-semibold md:hidden" aria-expanded={isOpen} aria-controls="mobile-navigation" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? 'Close' : 'Menu'}
+        </button>
+        {isOpen && <div id="mobile-navigation" className="absolute left-0 right-0 top-[calc(100%+10px)] rounded-3xl border border-border bg-background p-4 shadow-xl md:hidden">
+          {links.map(([label, href]) => <Link key={label} href={href} className="block rounded-2xl px-4 py-3 font-medium hover:bg-secondary" onClick={() => setIsOpen(false)}>{label}</Link>)}
+        </div>}
+      </div>
+    </nav>
+  );
 }

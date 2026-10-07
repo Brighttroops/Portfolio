@@ -1,103 +1,48 @@
-"use client";
-
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 import content from '@/data/content.json';
 
+export const metadata = { title: 'Selected Work | Bright Fungula', description: 'Selected product and interface design projects by Bright Fungula.' };
+
 export default function Work() {
-    const { projects } = content;
-    const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
-
-    return (
-        <section className="min-h-screen pt-32 pb-12 px-6 bg-background">
-            <div className="container mx-auto">
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-4xl md:text-6xl font-bold mb-16 font-display text-center"
-                >
-                    Engineering
-                </motion.h1>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group relative overflow-hidden rounded-2xl bg-secondary/30 border border-white/5 hover:border-white/10 transition-colors flex flex-col"
-                        >
-                            <div className="aspect-video relative overflow-hidden bg-neutral-900">
-                                {project.image && (
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
-                                    />
-                                )}
-                            </div>
-                            <div className="p-6 flex flex-col flex-grow">
-                                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                                <p className="text-text-muted mb-4 flex-grow">{project.description}</p>
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {project.tech.map((t, i) => (
-                                        <span key={i} className="text-xs px-3 py-1 rounded-full bg-white/5 text-text-muted border border-white/5">
-                                            {t}
-                                        </span>
-                                    ))}
-                                </div>
-                                <button
-                                    onClick={() => setSelectedProject(project)}
-                                    className="inline-flex items-center text-sm font-medium hover:text-primary transition-colors mt-auto cursor-pointer"
-                                >
-                                    View Project →
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
+  const { projects } = content;
+  return (
+    <section className="min-h-screen pb-24 pt-36 md:pt-44">
+      <div className="container">
+        <div className="mb-14 grid gap-8 md:mb-20 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[.2em] text-primary">A few things I’ve made</p>
+            <h1 className="max-w-3xl text-6xl font-bold leading-[.9] tracking-[-.07em] md:text-8xl">Selected<br/><span className="text-primary">work.</span></h1>
+          </div>
+          <p className="max-w-sm text-lg leading-relaxed text-text-muted">A mix of product thinking, visual craft, and practical engineering. Each project starts with a real human need.</p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+          {projects.map((project, index) => {
+            const hasRealLink = project.link && !project.link.includes('example.com');
+            return <article key={project.title} className={`group overflow-hidden rounded-[1.75rem] border border-border bg-white/50 ${index === 0 ? 'md:col-span-2' : ''}`}>
+              <div className={`relative overflow-hidden ${index === 0 ? 'aspect-[16/8]' : 'aspect-[4/3]'}`}>
+                {project.image && <Image src={project.image} alt={`${project.title} project preview`} fill sizes={index === 0 ? '(max-width: 768px) 100vw, 90vw' : '(max-width: 768px) 100vw, 45vw'} className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />}
+                <span className="absolute left-5 top-5 rounded-full bg-background/90 px-4 py-2 text-xs font-semibold uppercase tracking-[.14em] backdrop-blur">0{index + 1} / Product design</span>
+              </div>
+              <div className="flex flex-col gap-5 p-6 md:flex-row md:items-end md:justify-between md:p-8">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{project.title}</h2>
+                  <p className="mt-2 max-w-xl leading-relaxed text-text-muted">{project.description}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">{project.tech.map((tech) => <span key={tech} className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-text-muted">{tech}</span>)}</div>
                 </div>
-            </div>
-
-            <AnimatePresence>
-                {selectedProject && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setSelectedProject(null)}
-                        className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            onClick={(e) => e.stopPropagation()}
-                            className="bg-neutral-900 p-4 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col items-center border border-white/10"
-                        >
-                            {selectedProject.image && (
-                                <div className="w-full relative rounded-lg overflow-hidden mb-6">
-                                    <img
-                                        src={selectedProject.image}
-                                        alt={selectedProject.title}
-                                        className="w-full h-auto object-contain max-h-[60vh]"
-                                    />
-                                </div>
-                            )}
-                            <h3 className="text-3xl font-bold mb-2">{selectedProject.title}</h3>
-                            <p className="text-xl text-primary font-display mb-6">Coming Soon</p>
-                            <button
-                                onClick={() => setSelectedProject(null)}
-                                className="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors font-medium"
-                            >
-                                Close
-                            </button>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </section>
-    );
+                {hasRealLink ? <a href={project.link} target="_blank" rel="noreferrer" className="shrink-0 text-sm font-semibold text-primary hover:text-primary-hover">Visit project ↗</a> : <span className="shrink-0 text-sm font-medium text-text-muted">Case study in progress</span>}
+              </div>
+            </article>;
+          })}
+        </div>
+        <div className="mt-20 rounded-[2rem] bg-foreground px-7 py-12 text-background md:px-14 md:py-16">
+          <p className="text-sm font-semibold uppercase tracking-[.2em] text-accent">Have a good one?</p>
+          <div className="mt-5 flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+            <h2 className="max-w-2xl text-4xl font-bold leading-tight tracking-[-.05em] md:text-6xl">Let’s make your next idea happen.</h2>
+            <Link href="/#contact" className="btn shrink-0 bg-accent text-foreground hover:-translate-y-0.5">Start a conversation ↗</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

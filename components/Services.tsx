@@ -1,7 +1,11 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCode, faGear, faPalette, faRobot } from '@fortawesome/free-solid-svg-icons';
 import content from '../data/content.json';
+
+const serviceIcons = [faPalette, faCode, faRobot, faGear];
 
 export default function Services() {
     const { services } = content;
@@ -28,7 +32,9 @@ export default function Services() {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className="bg-background p-8 rounded-lg border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary"
                         >
-                            <div className="text-4xl mb-6">{service.icon}</div>
+                            <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-primary/10 text-2xl text-primary">
+                                <FontAwesomeIcon icon={serviceIcons[index]} aria-hidden="true" />
+                            </div>
                             <h3 className="text-xl font-semibold mb-4 text-foreground">{service.title}</h3>
                             <p className="text-text-muted text-sm leading-relaxed">{service.description}</p>
                         </motion.div>
